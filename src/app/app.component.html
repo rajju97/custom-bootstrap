@@ -1,0 +1,59 @@
+<button class="form-control btn btn-primary">Submit</button>
+<button class="form-control btn btn-secondary">Submit</button>
+<button class="form-control btn btn-success">Submit</button>
+
+
+<form [formGroup]="myform" (ngSubmit)="onSubmit()" class="form-group">
+  <div formArrayName="user" class="container">
+    <div *ngFor="let item of user.controls; let i=index" class="row mb-3">
+      <div [formArrayName]="i" class="col-10">
+        <div class="row">
+          <div class="col-3 form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" class="form-control">
+            <div *ngIf="item.get('name')?.invalid && item.get('name')?.touched ">
+              <small>Name is required</small>
+            </div>
+          </div>
+          <div class="col-3 form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email" class="form-control">
+            <div *ngIf="item.get('email')?.invalid && item.get('email')?.touched ">
+              <small>Email is required</small>
+            </div>
+          </div>
+          <div class="col-3 form-group">
+            <label for="state">state</label>
+            <app-selectdropdown [options]="cars" (selected)="getValue($event,i)" ></app-selectdropdown>
+          </div>
+          <div class="col-3">
+            <input class="form-check-input" value="female" type="radio" formControlName="gender" id="female"> Female
+            <input class="form-check-input" value="male" type="radio" formControlName="gender" id="male"> Male
+          </div>
+        </div>
+        <div formArrayName="skill"  class="row">
+          <ng-container *ngFor="let skill of skills(i).controls; let j=index">
+
+              <input type="text" [formControlName]="j" class="form-control">
+
+          </ng-container>
+
+        </div>
+      </div>
+      <div class="col-2 btn-group">
+        <Button type="button" class="btn btn-success"
+          (click)="addSkill(i)">Add skills</Button>
+        <Button *ngIf="user.controls.length>1" type="button" class="btn btn-secondary"
+          (click)="delUser(i)">Delete</Button>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group">
+    <Button type="button" class="btn btn-success" (click)="addUser()">Add More</Button>
+    <button type="submit" class="btn btn-primary" [disabled]="!myform.valid">Submit</button>
+  </div>
+</form>
+
+<hr>
+
+<app-selectdropdown [options]="cars"></app-selectdropdown>

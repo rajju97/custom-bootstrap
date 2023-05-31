@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+$theme-colors: (
+  "primary":    #ff7200,
+  "secondary":  rgb(134, 60, 60),
+  "success":    teal
+);
+
+$btn-color:#fff;
+
+$border-radius:2px;
+
+$btn-color:#fff;
+
+
+@import "/node_modules/@ng-select/ng-select/themes/default.theme.css";
+@import "/node_modules//bootstrap/scss/bootstrap.scss";
+
+*{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ;
+}
+
+.btn{
+  color: $btn-color;
+}
+
+.ng-select.custom {
+  border:0px;
+  min-height: 0px;
+  border-radius: 0;
+}
+.ng-select.custom .ng-select-container  {
+  min-height: 0px;
+  border-radius: 0;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  background: #fff;
+  border: 1px solid #ff7200;
+}
+
+
+
+
+

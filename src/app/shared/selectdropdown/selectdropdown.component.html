@@ -1,0 +1,16 @@
+<div class="dropdown">
+    <input class="form-control" (click)="toggleDropdown()" placeholder="search..." type="text" [(ngModel)]="searchTerm" (keyup)="filterOptions()" name="searchbar"
+      id="search_bar"> <span class="angle" (click)="toggleDropdown()">
+        <i class="fa" [ngClass]="{'fa-angle-down': !showDropdown, 'fa-angle-up': showDropdown}"></i>
+      </span>
+
+  <ul *ngIf="showDropdown">
+
+    <li *ngIf="filteredOptions.length==0">
+      Not Found
+    </li>
+    <li (click)="selectOption(option.name)" [ngClass]="{active:selectedOption==option}" *ngFor="let option of filteredOptions">
+      {{option.name}}
+    </li>
+  </ul>
+</div>
